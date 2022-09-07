@@ -1,4 +1,4 @@
-# entregaPerformance
+# entregaArquitectura
 ## Ejecutar el proyecto:
 - modo fork => npm run start
 - modo cluster => MODO=cluster npm run start
@@ -6,4 +6,4 @@
 - 0x init.js
 
 
-# entregaArquitectura
+
