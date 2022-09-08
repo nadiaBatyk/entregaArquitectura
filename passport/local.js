@@ -2,6 +2,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const Usuarios = require("../models/userSchema");
 const bCrypt = require("bcrypt");
+const UserDTO = require("../DTOs/userDTO.JS");
 
 async function isValidPassword(user, password) {
   return await bCrypt.compare(password, user.password);
@@ -28,7 +29,8 @@ passport.use(
       newUser.email = email;
       await createHash(password).then((res) => (newUser.password = res));
       await newUser.save();
-      done(null, newUser);
+      const nuevoUserDTO = new UserDTO(newUser)
+      return done(null, nuevoUserDTO);
     }
   )
 );
@@ -53,7 +55,8 @@ passport.use(
         console.log(`pass incorrecta`);
         return done(null, false);
       }
-      return done(null, userBD);
+      const nuevoUserDTO = new UserDTO(userBD)
+      return done(null, nuevoUserDTO);
     }
   )
 );
@@ -64,5 +67,7 @@ passport.serializeUser((usuario, done) => {
 
 passport.deserializeUser(async (id, done) => {
   const user = await Usuarios.findById(id);
-  done(null, user);
+  const nuevoUserDTO = new UserDTO(user)
+    done(null, nuevoUserDTO);
+  
 });
