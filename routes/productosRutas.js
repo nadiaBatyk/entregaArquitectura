@@ -10,7 +10,7 @@ function isAuth(req, res, next) {
 }
 //cuando le pegan al endpoint / render index.hbs
 router.get("/", isAuth, (req, res) => {
-  console.log(req.user);
+  
   res.render("layouts/index", {
     layout: "index",
     email: req.user.email,

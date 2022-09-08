@@ -1,12 +1,14 @@
+const BasicDAO = require("../persistencia/DAO");
+const productoSchema = require("../models/productoSchema");
 
-const Contenedor = require("../persistencia/contenedor");
-const productoSchema = require("../schemas/productoSchema");
-
-const productosDB = new Contenedor("productos",productoSchema);
-async function obtenerProductos() {
-  return await productosDB.getAll();
-}
-async function agregarProducto(producto){
-    return await productosDB.save(producto)
-}
-module.exports = {obtenerProductos,agregarProducto}
+module.exports = class ProductosAPI {
+  constructor() {
+    this.basicDAO = BasicDAO.getInstance("productos", productoSchema);
+  }
+  async obtenerProductos() {
+    return await this.basicDAO.getAll();
+  }
+  async agregarProducto(producto) {
+    return await this.basicDAO.save(producto)
+  }
+};

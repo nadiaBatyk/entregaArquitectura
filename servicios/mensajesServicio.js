@@ -1,8 +1,8 @@
 
-const Contenedor = require("../persistencia/contenedor");
-const mensajeSchema = require("../schemas/mensajeSchema");
+const BasicDAO = require("../persistencia/DAO");
+const mensajeSchema = require("../models/mensajeSchema");
 
-const mensajesDB = new Contenedor("mensajes",mensajeSchema);
+const mensajesDB = new BasicDAO("mensajes",mensajeSchema);
 async function obtenerMensajes() {
   return await mensajesDB.getAll();
 }

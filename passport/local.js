@@ -1,6 +1,6 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const Usuarios = require("../schemas/userSchema");
+const Usuarios = require("../models/userSchema");
 const bCrypt = require("bcrypt");
 
 async function isValidPassword(user, password) {

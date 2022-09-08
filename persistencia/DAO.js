@@ -3,10 +3,14 @@ const mongoConfig = require("../config/DBconfig/DBConfig");
 const { ErrorCustom } = require("../errorCustom");
 
 mongoose.connect(mongoConfig.URL,mongoConfig.options)
-
-module.exports = class Contenedor {
+let instancia = null;
+module.exports = class BasicDAO {
   constructor(collectionName, schema) {
     this.collection = mongoose.model(collectionName, schema);
+  }
+  static getInstance(collectionName, schema){
+    if(!instancia) instancia = new BasicDAO(collectionName, schema)
+    return instancia
   }
 
   async save(item) {
