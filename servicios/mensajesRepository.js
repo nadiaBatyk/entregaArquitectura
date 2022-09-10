@@ -2,7 +2,7 @@ const MensajeDTO = require("../DTOs/mensajeDTO");
 const mensajeSchema = require("../models/mensajeSchema");
 const MensajesDAO = require("../persistencia/mensajesDAO");
 
-module.exports = class MensajesAPI {
+module.exports = class MensajesRepository {
   constructor() {
     this.mensajesDAO = MensajesDAO.getInstance("mensajes", mensajeSchema);
   }

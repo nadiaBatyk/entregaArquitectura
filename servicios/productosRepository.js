@@ -3,7 +3,7 @@ const productoSchema = require("../models/productoSchema");
 const ProductoDTO = require("../DTOs/productoDTO.JS");
 const ProductosDAO = require("../persistencia/productosDAO");
 
-module.exports = class ProductosAPI {
+module.exports = class ProductosRepository {
   constructor() {
     this.productosDAO = ProductosDAO.getInstance("productos", productoSchema);
   }

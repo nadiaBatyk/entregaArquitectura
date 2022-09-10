@@ -1,12 +1,12 @@
 
-const ProductosAPI = require("../servicios/productosServicio");
+const ProductosRepository = require("../servicios/productosRepository");
 
-const productosAPI = new ProductosAPI()
+const productosRepository = new ProductosRepository()
 
 async function getProductosController() {
-  return productosAPI.obtenerProductos()
+  return productosRepository.obtenerProductos()
 }
 async function addNewProduct(producto){
-await productosAPI.agregarProducto(producto)
+await productosRepository.agregarProducto(producto)
 }
 module.exports = { getProductosController,addNewProduct}

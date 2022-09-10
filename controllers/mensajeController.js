@@ -1,10 +1,11 @@
-const MensajesAPI = require("../servicios/mensajesServicio");
+const MensajesRepository = require("../servicios/mensajesRepository");
 
-const mensajesAPI = new MensajesAPI();
+
+const mensajesRepository = new MensajesRepository();
 async function getMensajesController() {
-  return mensajesAPI.obtenerMensajes();
+  return mensajesRepository.obtenerMensajes();
 }
 async function sendNewMessage(mensaje) {
-  await mensajesAPI.agregarMensaje(mensaje);
+  await mensajesRepository.agregarMensaje(mensaje);
 }
 module.exports = { getMensajesController, sendNewMessage };
