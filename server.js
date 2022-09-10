@@ -24,7 +24,6 @@ const {
   getMensajesController,
   sendNewMessage,
 } = require("./controllers/mensajeController");
-const normalizar = require("./servicios/normalizr");
 const logWinston = require("./utils/logger");
 const app = express();
 
