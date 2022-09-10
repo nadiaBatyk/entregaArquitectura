@@ -79,8 +79,8 @@ socketServer.on("connection", async (socket) => {
 
   try {
     const mensajes = await getMensajesController();
-    const data = normalizar(JSON.parse(JSON.stringify(mensajes)));
-    socket.emit("datosMensajes", data);
+   console.log(mensajes);
+    socket.emit("datosMensajes", mensajes);
   } catch (error) {
     logger.error(error);
   }
@@ -89,8 +89,7 @@ socketServer.on("connection", async (socket) => {
     try {
       await sendNewMessage(mensaje);
       const mensajes = await getMensajesController();
-      const data = normalizar(JSON.parse(JSON.stringify(mensajes)));
-      socket.emit("datosMensajes", data);
+      socket.emit("datosMensajes", mensajes);
     } catch (error) {
       logger.error(error);
     }

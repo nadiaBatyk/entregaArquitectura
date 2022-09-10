@@ -43,28 +43,14 @@ function addProduct() {
   socket.emit("nuevo-producto", producto);
 }
 //MENSAJES
-const schemaAuthor = new normalizr.schema.Entity("author", {}, { idAttribute: "email" });
-const schemaMensaje = new normalizr.schema.Entity(
-  "mensaje",
-  {
-    author: schemaAuthor,
-  },
-  { idAttribute: "_id" }
-);
-const mensajesSchema = new normalizr.schema.Entity("mensajes", {
-  mensajes: [schemaMensaje],
-});
 socket.on("datosMensajes", (mensaje) => {
   console.log(mensaje);
   
-    const data = normalizr.denormalize(mensaje.result,mensajesSchema,mensaje.entities);
-    console.log(data);
-    return renderMensajes(data);
+    return renderMensajes(mensaje);
  
 });
 function renderMensajes(mensaje) {
-  const html = mensaje.mensajes
-    .map((item) => {
+  const html = mensaje.map((item) => {
       return `<div class="flex">
       <p class="mail mr-1">${item.author.email} </p>
       <p class="fecha mr-1">[${item.timestamp}] :</p>
